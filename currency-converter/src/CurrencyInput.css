@@ -1,0 +1,14 @@
+.currency-input {
+  display: flex;
+  gap: 10px;
+}
+
+.amount {
+  width: 150px;
+}
+
+.currency {
+  width: 150px;
+}
+
+/*# sourceMappingURL=CurrencyInput.css.map */

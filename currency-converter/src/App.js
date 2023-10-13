@@ -66,20 +66,32 @@ function App() {
 
     if (fromCurrency && toCurrency) {
         return (
-            <div>
-                <CurrencyInput
-                    currencies={currencies}
-                    onChangeAmount={handleFromAmountChange}
-                    onChangeCurrency={handleFromCurrencyChange}
-                    amount={fromAmount}
-                    currency={fromCurrency}/>
-                <CurrencyInput
-                    currencies={currencies}
-                    onChangeAmount={handleToAmountChange}
-                    onChangeCurrency={handleToCurrencyChange}
-                    amount={toAmount}
-                    currency={toCurrency}/>
-            </div>
+            <>
+                <header>
+
+                </header>
+                <main>
+                    <div className="currency-converter">
+                        <h2>Currency converter</h2>
+                        <CurrencyInput
+                            currencies={currencies}
+                            onChangeAmount={handleFromAmountChange}
+                            onChangeCurrency={handleFromCurrencyChange}
+                            amount={fromAmount}
+                            currency={fromCurrency}/>
+                        <div className="equal">is equal</div>
+                        <CurrencyInput
+                            currencies={currencies}
+                            onChangeAmount={handleToAmountChange}
+                            onChangeCurrency={handleToCurrencyChange}
+                            amount={toAmount}
+                            currency={toCurrency}/>
+                    </div>
+                </main>
+                <footer>
+
+                </footer>
+            </>
         );
     }
 }
