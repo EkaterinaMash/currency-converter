@@ -11,6 +11,7 @@ function App() {
     const [fromCurrency, setFromCurrency] = useState();
     const [toCurrency, setToCurrency] = useState();
     const [exchangeRate, setExchangeRate] = useState();
+    const [lastUpdate, setLastUpdate] = useState('');
 
     let toAmount, fromAmount
 
@@ -30,6 +31,7 @@ function App() {
                 setCurrencies(Object.keys(data.rates));
                 setFromCurrency(data.base);
                 setToCurrency(Object.keys(data.rates)[0]);
+                setLastUpdate(data.date);
             });
     }, []);
 
@@ -37,9 +39,17 @@ function App() {
         fetch(BASE_URL)
             .then(response => response.json())
             .then(data => {
+                const lastUpdate = formatDate(data.date);
+
                 setExchangeRate(data.rates[toCurrency] / data.rates[fromCurrency]);
+                setLastUpdate(lastUpdate);
             })
     }, [fromCurrency, toCurrency]);
+
+    function formatDate(date) {
+        const options = {year: 'numeric', month: 'long', day: 'numeric'};
+        return new Date(date).toLocaleDateString('en-US', options);
+    }
 
     function handleFromAmountChange(event) {
         setAmount(event.target.value);
@@ -87,6 +97,10 @@ function App() {
                             onChangeCurrency={handleToCurrencyChange}
                             amount={toAmount}
                             currency={toCurrency}/>
+                        <div>
+                            <p>Exchange rate: {exchangeRate}</p>
+                            <p>Last update: {lastUpdate}</p>
+                        </div>
                     </div>
                 </main>
                 <footer>
