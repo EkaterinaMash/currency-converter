@@ -8,12 +8,13 @@ function App() {
     const [currencies, setCurrencies] = useState([]);
     const [amount, setAmount] = useState(1);
     const [isFromAmount, setIsFromAmount] = useState(true);
-    const [fromCurrency, setFromCurrency] = useState();
-    const [toCurrency, setToCurrency] = useState();
-    const [exchangeRate, setExchangeRate] = useState();
+    const [fromCurrency, setFromCurrency] = useState('');
+    const [toCurrency, setToCurrency] = useState('');
+    const [exchangeRate, setExchangeRate] = useState('');
     const [lastUpdate, setLastUpdate] = useState('');
+    const displayedExchangeRate = Number(exchangeRate).toFixed(2);
 
-    let toAmount, fromAmount
+    let toAmount, fromAmount;
 
     if (isFromAmount) {
         fromAmount = amount;
@@ -83,7 +84,10 @@ function App() {
                 </header>
                 <main>
                     <div className="currency-converter">
-                        <h2>Currency converter</h2>
+                        <div>
+                            <h1>Currency converter</h1>
+                            <p className="subtitle">Enter amount and choose currencies.</p>
+                        </div>
                         <CurrencyInput
                             currencies={currencies}
                             onChangeAmount={handleFromAmountChange}
@@ -98,8 +102,8 @@ function App() {
                             amount={toAmount}
                             currency={toCurrency}/>
                         <div>
-                            <p>Exchange rate: {exchangeRate}</p>
-                            <p>Last update: {lastUpdate}</p>
+                            <p><span className="info">Exchange rate: </span>{displayedExchangeRate}.</p>
+                            <p><span className="info">Last update: </span>{lastUpdate}.</p>
                         </div>
                     </div>
                 </main>

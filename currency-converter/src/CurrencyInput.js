@@ -1,6 +1,6 @@
 import React from "react";
 import {TextField, Autocomplete} from "@mui/material";
-import './CurrencyInput.css'
+import './CurrencyInput.css';
 
 export default function CurrencyInput(props) {
     const {
@@ -13,10 +13,15 @@ export default function CurrencyInput(props) {
 
     return (
         <div className="currency-input">
-            <TextField type="number" onChange={onChangeAmount} value={amount} className="amount"/>
+            <TextField
+                type="number"
+                onChange={onChangeAmount}
+                value={amount}
+                className="amount"
+            />
             <Autocomplete
                 options={currencies}
-                renderInput={(params) => <TextField {...params}/>}
+                renderInput={(params) => <TextField {...params} />}
                 onChange={onChangeCurrency}
                 value={currency}
                 disableClearable={true}
