@@ -21,7 +21,7 @@ export default function CurrencyInput(props) {
                 value={currency}
                 disableClearable={true}
                 className="currency"
-                classes/>
+                />
         </div>
     )
 }

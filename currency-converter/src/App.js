@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import './App.css';
 import CurrencyInput from "./CurrencyInput";
 
-const BASE_URL = 'http://api.exchangeratesapi.io/v1/latest?access_key=9d684127ebef32c53a9ea2f0aa43bb19';
+const BASE_URL = 'http://data.fixer.io/api/latest?access_key=75119577e8cff3ff5dccd71641b88b3c';
 
 function App() {
     const [currencies, setCurrencies] = useState([]);
@@ -16,10 +16,11 @@ function App() {
 
     if (isFromAmount) {
         fromAmount = amount;
-        toAmount = amount * exchangeRate;
+        toAmount = (amount * exchangeRate).toFixed(2);
+
     } else {
         toAmount = amount;
-        fromAmount = amount / exchangeRate;
+        fromAmount = (amount / exchangeRate).toFixed(2);
     }
 
     useEffect(() => {
